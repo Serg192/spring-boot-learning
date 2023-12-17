@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SSV Lab3</title>
+    <meta charset="UTF-8">
+    <link href="/css/edit-client-style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+<div class="error-message" th:id="error-message" th:style="'display: ' + (${errorMsg} == null ? 'none' : 'block')">
+    <span th:utext="${errorMsg == null ? '' : errorMsg}"></span>
+</div>
+<div class="content">
+    <div class="edit-box">
+        <form th:action="@{/login}" method="post">
+            <div class="form-row">
+                <span class="title">Вхід</span>
+            </div>
+            <div class="form-row">
+                <label for="user-login">Логін</label>
+                <input type="text" name="username" id="user-login" required maxlength="50" />
+            </div>
+            <div class="form-row">
+                <label for="user-password">Пароль</label>
+                <input type="password" name="password" id="user-password" required maxlength="100" />
+            </div>
+            <div>
+                Ще не маєте акаунта? <a href="/registration">Зареєструватися</a>
+            </div>
+
+            <div class="form-row">
+                <button type="submit">Увійти</button>
+            </div>
+
+            <div th:if="${param.error}">
+                <script th:inline="javascript">
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'Пошту або пароль введено невірно',
+                    });
+                </script>
+            </div>
+
+            <div th:if="${param.logout}">
+                <script th:inline="javascript">
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Logout',
+                        text: 'You have been logged out',
+                    });
+                </script>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

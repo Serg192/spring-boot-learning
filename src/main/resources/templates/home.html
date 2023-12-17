@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab4_5</title>
+    <link href="/css/home.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<nav>
+   <span th:if="${#authorization.expression('isAuthenticated()')}"
+         th:text="${#authentication.name + (isVIP ? ' VIP' : '')}"
+         th:style="${isVIP ? 'color: yellow;' : ''}">
+    </span>
+    <div class="dropdown">
+        <button class="dropbtn">Налаштування</button>
+        <div class="dropdown-content">
+            <a href="/home/account/details">Облікові дані</a>
+            <a href="/home/account/addresses">Адреси</a>
+        </div>
+    </div>
+
+    <a th:if="${#authorization.expression('isAuthenticated()')}" th:href="@{/logout}" class="th-logout">Logout</a>
+
+</nav>
+
+<!-- Rest of your content -->
+
+</body>
+</html>

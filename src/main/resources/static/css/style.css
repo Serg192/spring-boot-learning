@@ -1,0 +1,157 @@
+.content {
+    margin: 20px;
+}
+
+.title {
+    text-align: center;
+    font-size: xx-large;
+    margin-bottom: 50px;
+}
+
+.control-panel {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.control-panel-item {
+    margin-right: 20px;
+}
+
+#search-by-surname {
+    width: 180px;
+    height: 18px;
+    padding: 10px;
+    font-size: medium;
+}
+
+#search-by-str {
+    width: 180px;
+    height: 18px;
+    padding: 10px;
+    font-size: medium;
+}
+
+#send_email{
+    width: 180px;
+    height: 18px;
+    padding: 10px;
+    font-size: medium;
+}
+
+label {
+    font-weight: bold;
+    font-size: large;
+}
+
+select {
+    width: 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    font-size: medium;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
+}
+
+thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    font-size: large;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-right: 2px solid #dddddd;
+}
+
+th:last-child,
+td:last-child {
+    border-right: none;
+}
+
+tbody tr {
+    font-size: large;
+    font-family: SansSerif, serif;
+    border-bottom: 1px solid #dddddd;
+}
+
+tbody tr:nth-of-type(even) {
+    background-color: #e4e4e4;
+}
+
+button, .button {
+    border: none;
+    font-size: large;
+    padding: 7px 12px;
+    color: white;
+    background-color: #009879;
+}
+
+.edit-btn, .del-btn {
+    border: none;
+    font-size: large;
+    padding: 7px 12px;
+    color: white;
+    min-width: 120px;
+}
+
+.edit-btn {
+    background-color: #009879;
+}
+
+.del-btn {
+    background-color: #d9a628;
+}
+
+.edit-btn:hover {
+    background-color: #007766;
+}
+
+button:hover {
+    background-color: #007766;
+}
+
+.button:hover {
+    background-color: #007766;
+}
+
+.del-btn:hover {
+    background-color: #e59900;
+}
+
+.error-message {
+    width: 100%;
+    height: 50px;
+    background-color: #f5cf92;
+    text-align: center;
+    font-size: xx-large;
+    color: #e52727;
+}
+
+fieldset {
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+legend {
+    font-weight: bold;
+}
+
+input[type="radio"] {
+    transform: scale(1.5);
+}

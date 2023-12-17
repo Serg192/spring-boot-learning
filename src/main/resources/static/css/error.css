@@ -1,0 +1,15 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+.error-container {
+    margin: 10% auto;
+    padding: 20px;
+    max-width: 500px;
+    background-color: #fff;
+}
+h1 {
+    color: #009879;
+    font-size: xxx-large;
+}

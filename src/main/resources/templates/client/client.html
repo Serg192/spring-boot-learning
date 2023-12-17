@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SSV Lab3</title>
+    <meta charset="UTF-8">
+    <link href="/css/edit-client-style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="content">
+    <div class="edit-box">
+        <form th:action="@{/home/account/details}" method="post" th:object="${client}" id="edit-client-form">
+            <input type="hidden" th:field="*{id}" />
+            <div class="form-row">
+                <span class="title" th:text="${client.id == 0 ? 'Введіть додаткові дані' : 'Змінити облікові дані'}"></span>
+            </div>
+            <div class="form-row">
+                <label for="client-lastname">Прізвище</label>
+                <input type="text" name="secondName" id="client-lastname" th:value="*{secondName}" />
+                <p style="color: red" th:errors="*{secondName}"></p>
+            </div>
+            <div class="form-row">
+                <label for="client-name">Ім'я</label>
+                <input type="text" name="firstName" id="client-name" th:value="*{firstName}" />
+                <p style="color: red" th:errors="*{firstName}"></p>
+            </div>
+            <div class="form-row">
+                <label for="client-gender">Стать</label>
+                <select id="client-gender" name="gender" required>
+                    <option th:each="gender : ${T(ntukhpi.semit.cs221a.ssv.webappssvlab4_and_5.enums.Gender).values()}"
+                            th:value="${gender}"
+                            th:selected="${gender == client.gender}"
+                            th:text="${gender.getDisplayName()}"></option>
+
+                </select>
+                <p style="color: red" th:errors="*{gender}"></p>
+            </div>
+            <div class="form-row">
+                <label for="client-phone">Телефон</label>
+                <input type="text" name="phone" id="client-phone" th:value="*{phone}"  />
+                <p style="color: red" th:errors="*{phone}"></p>
+            </div>
+            <div class="form-row">
+                <label for="client-email">Email</label>
+                <input type="text" name="email" id="client-email" th:value="*{email}" />
+                <p style="color: red" th:errors="*{email}"></p>
+            </div>
+<!--            <div class="form-row">-->
+<!--                <label for="client-vip">VIP клієнт</label>-->
+<!--                <select id="client-vip" th:field="*{client.isVIP}">-->
+<!--                    <option value="true">Так</option>-->
+<!--                    <option value="false">Ні</option>-->
+<!--                </select>-->
+<!--            </div>-->
+            <div class="form-row">
+                <button type="submit">Зберегти</button>
+                 <a th:if="${client.id != 0}" th:href="@{/home}" class="back-link">Повернутися</a>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

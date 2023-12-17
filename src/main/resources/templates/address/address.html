@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SSV Lab3</title>
+    <meta charset="UTF-8">
+    <link href="/css/edit-client-style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="error-message" th:id="error-message" th:style="'display: ' + (${errorMsg} == null ? 'none' : 'block')">
+    <span th:utext="${errorMsg == null ? '' : errorMsg}"></span>
+</div>
+<div class="content">
+    <div class="edit-box">
+        <form th:action="@{/home/account/addresses/new}" method="post"  th:object="${addr}" id="edit-address-form">
+            <input type="hidden" th:field="*{id}" />
+            <div class="form-row">
+                <span class="title" th:text="${addr.id == 0 ? 'Додати нову адресу' : 'Редагувати адресу'}"></span>
+            </div>
+            <div class="form-row">
+                <label for="codAddress">Умовна назва</label>
+                <input type="text" name="codAddress" id="codAddress" th:value="*{codAddress}" />
+                <p style="color: red" th:errors="*{codAddress}"></p>
+            </div>
+            <div class="form-row">
+                <label for="region">Область</label>
+                <select id="region" th:field="*{region}">
+                    <option value="Вінницька">Вінницька</option>
+                    <option value="Волинська">Волинська</option>
+                    <option value="Дніпропетровська">Дніпропетровська</option>
+                    <option value="Донецька">Донецька</option>
+                    <option value="Житомирська">Житомирська</option>
+                    <option value="Закарпатська">Закарпатська</option>
+                    <option value="Запорізька">Запорізька</option>
+                    <option value="Івано-Франківська">Івано-Франківська</option>
+                    <option value="Київська">Київська</option>
+                    <option value="Кіровоградська">Кіровоградська</option>
+                    <option value="Луганська">Луганська</option>
+                    <option value="Львівська">Львівська</option>
+                    <option value="Миколаївська">Миколаївська</option>
+                    <option value="Одеська">Одеська</option>
+                    <option value="Полтавська">Полтавська</option>
+                    <option value="Рівненська">Рівненська</option>
+                    <option value="Сумська">Сумська</option>
+                    <option value="Тернопільська">Тернопільська</option>
+                    <option value="Харківська">Харківська</option>
+                    <option value="Херсонська">Херсонська</option>
+                    <option value="Хмельницька">Хмельницька</option>
+                    <option value="Черкаська">Черкаська</option>
+                    <option value="Чернівецька">Чернівецька</option>
+                    <option value="Чернігівська">Чернігівська</option>
+                </select>
+                <p style="color: red" th:errors="*{region}"></p>
+            </div>
+            <div class="form-row">
+                <label for="city">Місто</label>
+                <input type="text" name="city" id="city" pattern="^[А-ЯЄІЇ][А-ЯЄІЇ \-а-яєії]+$" th:value="*{city}" />
+                <p style="color: red" th:errors="*{city}"></p>
+            </div>
+            <div class="form-row">
+                <label for="addressStr">Адреса</label>
+                <input type="text" name="addressStr" id="addressStr" th:value="*{addressStr}"/>
+                <p style="color: red" th:errors="*{addressStr}"></p>
+            </div>
+            <div class="form-row">
+                <label for="pointNP">Номер відділення Нової пошти</label>
+                <input type="number" min="1" name="pointNP" id="pointNP" th:value="*{pointNP}" />
+                <p style="color: red" th:errors="*{pointNP}"></p>
+            </div>
+            <div class="form-row">
+                <label for="pointUkrPost">Номер відділення Укрпошти</label>
+                <input type="number" min="1" name="pointUkrPost" id="pointUkrPost" th:value="*{pointUkrPost}"/>
+                <p style="color: red" th:errors="*{pointUkrPost}"></p>
+            </div>
+
+            <div class="form-row">
+                <button type="submit">Зберегти</button>
+                <a th:href="@{/home/account/addresses}" class="back-link">Повернутися</a>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

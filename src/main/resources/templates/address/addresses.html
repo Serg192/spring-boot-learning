@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>SSV Lab3</title>
+    <meta charset="UTF-8">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="content">
+    <div class="title" th:text="'Адреси клієнта ' + ${client.firstName} + ' ' + ${client.secondName}"></div>
+    <div class="control-panel">
+        <div class="control-panel-item">
+            <form sec:authorize="hasAuthority('USER')" th:action="@{/home/account/addresses/new}">
+                <button>Додати</button>
+            </form>
+        </div>
+        <div class="control-panel-item">
+            <form sec:authorize="hasAuthority('USER')" th:action="@{/home}">
+                <input class="del-btn" type="submit" value="Повернутися">
+            </form>
+            <form sec:authorize="hasAuthority('ADMIN')" th:action="@{/admin}">
+                <input class="del-btn" type="submit" value="Повернутися">
+            </form>
+        </div>
+        <div class="control-panel-item">
+            <form>
+                <fieldset>
+                    <legend>Спосіб доставки</legend>
+                    <input type="radio" id="option1" name="radioFilter" value="address" checked>
+                    <label for="option1">Адреса</label><br>
+                    <input type="radio" id="option2" name="radioFilter" value="NP">
+                    <label for="option2">Нова пошта</label><br>
+                    <input type="radio" id="option3" name="radioFilter" value="UkrPost">
+                    <label for="option3">Укрпошта</label><br>
+                </fieldset>
+            </form>
+        </div>
+        <div class="control-panel-item">
+            <button onclick="onFilterButton()">Фільтрувати</button>
+        </div>
+
+        <div class="control-panel-item">
+            <label for="search-by-str">Пошук</label><br>
+            <input type="text"
+                   placeholder="Пошук..." id="search-by-str"
+                   onkeyup="onSearch()">
+        </div>
+
+        <div class="control-panel-item">
+            <form sec:authorize="hasAuthority('USER')"  th:action="@{/home/account/addresses}" >
+                <input class="button" type="submit" accesskey="x" value="Скинути">
+            </form>
+            <form sec:authorize="hasAuthority('ADMIN')"  th:action="@{/admin/clients/{id}/addresses (id=${client.id})}" >
+                <input class="button" type="submit" accesskey="x" value="Скинути">
+            </form>
+        </div>
+    </div>
+    <div class="address-table">
+        <table>
+            <thead>
+            <tr>
+                <th>Код адреси</th>
+                <th>Область</th>
+                <th>Населений пункт</th>
+                <th>Адреса</th>
+                <th>Номер відділення Нової пошти</th>
+                <th>Номер відділення Укрпошти</th>
+                <th sec:authorize="hasAuthority('USER')" colspan="2">Дії</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="address : ${aList}">
+                <td th:text="${address.codAddress}"></td>
+                <td th:text="${address.region}"></td>
+                <td th:text="${address.city}"></td>
+                <td th:text="${address.addressStr}"></td>
+                <td th:text="${address.pointNP}"></td>
+                <td th:text="${address.pointUkrPost}"></td>
+                <td sec:authorize="hasAuthority('USER')" >
+                    <form th:action="@{/home/account/addresses/{idAddr}/edit (idAddr=${address.id})}">
+                        <input class="edit-btn" type="submit" value="Редагувати">
+                    </form>
+                </td>
+                <td sec:authorize="hasAuthority('USER')" >
+                    <form th:action="@{/home/account/addresses/{idAddr}/del (idAddr=${address.id})}" method="post">
+                        <input type="hidden" name="client_id" th:value="${client.id}">
+                        <input class="del-btn" type="submit" value="Видалити" onclick="return deleteConfirmation()">
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="/js/addresses-table.js"></script>
+</body>
+</html>
